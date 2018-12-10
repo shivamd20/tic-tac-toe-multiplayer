@@ -1,0 +1,108 @@
+
+div { border:1px solid green;
+
+}
+
+.cell{
+  display: table;
+  text-align: center;
+  max-height: 500px;
+  max-width: 500px;
+
+  min-height: 50px;
+  min-width: 50px;
+  
+
+
+  transform: scale(0.7);
+
+  height: 100vw;
+  width: 100vw;
+
+  max-height: 100px;
+  max-width: 100px;
+
+
+  font-size: 2em;
+
+  box-shadow: 0 0 5px yellow;
+  border-color:#9ecaed;
+
+  background: #000000;  /* fallback for old browsers */
+   background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+  opacity: 0.9;
+  
+  transition: all 0.2s ease-in-out;
+
+ 
+}
+
+
+.clickedX {
+
+
+  background: #c31432;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #240b36, #c31432);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #240b36, #c31432); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
+}
+
+
+.clickedY {
+
+  background: #ad5389;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #3c1053, #ad5389);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #3c1053, #ad5389); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
+
+
+
+}
+
+
+
+
+
+.cell:hover{
+
+  box-shadow:  0 0 50px blue;
+
+  transform: scale(1.2);
+
+  z-index: 1000000;
+
+  content: 'ra'
+ 
+}
+
+.slideanim{
+
+  animation: slide 5s ease alternate infinite;
+  animation-iteration-count: infinite;
+
+}
+
+@keyframes slide {
+  from { 
+
+
+
+    box-shadow: 0 0 5px maroon;
+    transform : scale(0.7 ) rotate(0deg);
+   
+   
+  
+  }
+  to { 
+    box-shadow: 0 0 100000px red;
+    transform : scale(0.9) rotate(360deg) ;
+    border-radius: 300px;
+
+
+  }
+}

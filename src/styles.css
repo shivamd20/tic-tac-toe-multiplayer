@@ -7,3 +7,7 @@ body{
     align-items: center;
     margin: auto;
 }
+:root {
+    --cellh: 5em;
+  }
+  

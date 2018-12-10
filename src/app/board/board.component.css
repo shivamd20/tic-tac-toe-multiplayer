@@ -1,20 +1,11 @@
-.grid { 
-    
-    display: flex;                       /* establish flex container */
-flex-wrap: wrap;                     /* enable flex items to wrap */
-justify-content: space-around;
+.grid{
 
-height: 500px;
-width: 500px;
+  display:inline-flex;
+  box-shadow: 0 0 100px pink;
 
 
+  text-align: center;
+  background: #000000; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #000000, #434343); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #000000, #434343); 
 }
-.cell {
-    flex: 0 0 30%;                       /* don't grow, don't shrink, width */
-  
-    margin-bottom: 5px;
-    background-color: #999;
-  }
-  /* .cell:nth-child(3n) {
-    background-color: #F00;
-  } */
