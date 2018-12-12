@@ -9,56 +9,7 @@ import { RestService } from './rest.service';
 })
 class State {
 
-  key: number
-
-
-  newKey(){
-
-
-    this.rest.startGame().subscribe(d=>{
-
-
-      console.log(d)
-      this.key = d.key;
-
-
-    }, e=>{
-
-      console.log("newKey",e);
-
-      
-    })
-
-
-  }
-
-  updateState(){
-
-
-    
-
-    this.rest.updateState({
-
-
-      key : this.key,
-      data : JSON.stringify(this.data)
-
-
-    }).subscribe(d=>{
-
-      if(!this.winner )
-      this.data = JSON.parse(d.data);
-
-
-    }, e=>{
-
-
-
-    console.log("update error",e)
-    });
-
-
-  }
+  key: number;
 
   private data = {
 
@@ -83,9 +34,114 @@ class State {
 
   timeout;
 
+
+  newKey(){
+
+
+    this.rest.startGame().subscribe(d=>{
+
+
+      console.log(d)
+      this.key = d.key;
+
+
+    }, e=>{
+
+      console.log("newKey",e);
+
+      
+    })
+
+
+  }  
+
+  mergeState(d){
+
+
+
+    var data = JSON.parse(d.data);
+ 
+   
+    for(let i=0; i<3 ;i++)
+    for(let j=0;j<3;j++){
+
+
+      if( this.data.cells[i][j] != data.cells[i][j])
+
+      this.data.cells[i][j] = data.cells[i][j];
+
+    }
+
+
+   this.data.turn = data.turn;
+
+
+
+
+
+  }
+
+  updateState(){
+
+
+    console.log("updating");
+    
+
+    this.rest.updateState({
+
+
+       key : this.key,
+       data : JSON.stringify(this.data)
+
+
+     }).subscribe(d=>{
+
+
+      this.mergeState(d);
+
+
+  }, e=>{
+
+
+ console.log("update error",e)
+    });
+
+
+  }
+
+
   constructor(private rest: RestService) {
 
 this.newKey()
+
+
+
+setInterval(()=>{
+
+
+  if(this.key )
+  this.rest.joinGame(this.key).subscribe(d=>{
+
+
+
+
+if(d.data)
+
+    this.mergeState(d);
+
+    console.log('merged',d)
+
+  },e=>{
+
+
+ console.log("join error",e)
+
+  });
+
+
+},2000);
+
+
   }
 
   stateUpdated() {
