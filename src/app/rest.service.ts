@@ -1,55 +1,62 @@
 import { Injectable } from "@angular/core";
-import { HttpClient,HttpParams } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 
 
 @Injectable({
     providedIn: 'root'
-  })
-
-  export class GameState{
+})
 
 
 
+export class RestService {
 
 
-  }
-  
-export class RestService{
+    httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type':  'application/json',
+        })
+      };
 
-
-
-    readonly urlString:string = "http://127.0.0.1:8080";
+    readonly urlString: string = "http://127.0.0.1:7000/game/";
 
     constructor(private http: HttpClient) {
     }
-  
 
- 
 
-    updateState(){
+
+
+    updateState(data) {
+
+
+
+     return   this.http.put(this.urlString, data,this.httpOptions);
+
+
+    }
+
+    startGame() {
+
+
+     return   this.http.post(this.urlString, {
+    
+    });
+       
+
 
 
 
 
     }
 
-    startGame(){
+
+    joinGame(key) {
 
 
+        const params: HttpParams = new HttpParams();
 
+        params.append("key", key);
 
-    }
-
-
-    joinGame() :Observable<GameState>{
-
-
-        const params : HttpParams = new HttpParams();
-
-        params.append("key","1006");
-
-        return this.http.request("GET",this.urlString,{responseType:"json",params});
+        return this.http.request("GET", this.urlString + "?key=" + key, { responseType: "json", params });
 
     }
 

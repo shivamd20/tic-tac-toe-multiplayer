@@ -3,18 +3,62 @@ import { HttpClient } from '@angular/common/http';
 import { RestService } from './rest.service';
 
 
+
+@Injectable({
+  providedIn: 'root'
+})
 class State {
 
-  key : String;
+  key: number
 
 
+  newKey(){
 
-  stateUpdated(){
 
-    console.log(this);//TODO 
+    this.rest.startGame().subscribe(d=>{
+
+
+      console.log(d)
+      this.key = d.key;
+
+
+    }, e=>{
+
+      console.log("newKey",e);
+
+      
+    })
+
 
   }
 
+  updateState(){
+
+
+    
+
+    this.rest.updateState({
+
+
+      key : this.key,
+      data : JSON.stringify(this.data)
+
+
+    }).subscribe(d=>{
+
+      if(!this.winner )
+      this.data = JSON.parse(d.data);
+
+
+    }, e=>{
+
+
+
+    console.log("update error",e)
+    });
+
+
+  }
 
   private data = {
 
@@ -32,9 +76,29 @@ class State {
 
     turn: 'X',
 
-    winner: undefined,
+    winner: null,
 
   }
+
+
+  timeout;
+
+  constructor(private rest: RestService) {
+
+this.newKey()
+  }
+
+  stateUpdated() {
+
+
+    this.updateState();
+
+    console.log(this.data);
+
+
+
+  }
+
 
 
 
@@ -54,7 +118,7 @@ class State {
 
   }
 
-  get winner(){
+  get winner() {
 
     return this.data.winner;
 
@@ -67,11 +131,12 @@ class State {
 
   }
 
-  set winner(w){
+  set winner(w) {
 
+
+    this.data.winner = w;
 
     this.stateUpdated();
-    this.data.winner = w;
 
 
   }
@@ -79,8 +144,9 @@ class State {
   set cells(cells) {
 
 
-    this.stateUpdated();
     this.data.cells = cells;
+
+    this.stateUpdated();
 
 
   }
@@ -90,15 +156,15 @@ class State {
 
 
 
+
 @Injectable({
   providedIn: 'root'
 })
 
-
 export class GameService {
 
 
-  state: State = new State();
+
 
 
 
@@ -109,7 +175,7 @@ export class GameService {
 
   }
 
-  constructor() {
+  constructor(private state: State) {
 
 
 
@@ -167,9 +233,6 @@ export class GameService {
     if (this.arrCheck(2, 0, 1, 1) && this.arrCheck(1, 1, 0, 2) && this.state.cells[2][0] == a)
       return [a, 2, 0, 1, 1, 0, 2];
 
-
-
-
   }
 
 
@@ -184,8 +247,6 @@ export class GameService {
     var y = this.check('O');
     if (y instanceof Array) this.state.winner = y;
 
-
-    console.log(x, y)
 
     return this.state.winner;
 
