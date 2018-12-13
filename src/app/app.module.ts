@@ -6,17 +6,33 @@ import { AppComponent } from './app.component';
 import { BoardComponent } from './board/board.component';
 import { CellComponent } from './cell/cell.component';
 import { HttpClientModule } from '@angular/common/http';
+import {RouterModule, Routes} from '@angular/router';
+import { StartGameComponent } from './start-game/start-game.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component:StartGameComponent
+  },
+  {
+    path: 'game',
+    component: BoardComponent
+  }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     BoardComponent,
-    CellComponent
+    CellComponent,
+    StartGameComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(routes)
+
   ],
   providers: [],
   bootstrap: [AppComponent]

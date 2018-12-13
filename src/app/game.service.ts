@@ -38,7 +38,7 @@ class State {
   newKey(){
 
 
-    this.rest.startGame().subscribe(d=>{
+    this.rest.startGame().subscribe((d: any ) =>{
 
 
       console.log(d)
@@ -120,7 +120,7 @@ setInterval(()=>{
 
 
   if(this.key )
-  this.rest.joinGame(this.key).subscribe(d=>{
+  this.rest.joinGame(this.key).subscribe((d:any)=>{
 
 
 

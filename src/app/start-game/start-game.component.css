@@ -1,0 +1,68 @@
+.input{
+
+
+    width: 300px;
+    height: 100px;
+    text-align: center;
+    font-size: 30px;
+
+    border-radius: 2px;
+    border-color: aquamarine;
+
+    background: linear-gradient(to right, #3c1053, #ad5389); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
+
+    box-shadow: 4px 4px 51px red inset;
+
+ 
+    
+
+  color: wheat;
+
+ 
+    
+}
+.input:focus{
+
+
+    background: linear-gradient(to right, #3c1053, #2c091e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+    
+  box-shadow: 4px 4px 51px blue inset;
+
+
+
+  transform: scale(0.9);
+
+  box-shadow: 4px 4px 51px red ;
+
+}
+
+.button{
+
+    width: 300px;
+    height: 100px;
+
+    margin: auto;
+    color: wheat;
+    text-align: center;
+
+    font-size: 30px;
+
+    background: linear-gradient(to right, #3c1053, #ad5389); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
+}
+
+.button:hover{
+
+
+    transform: scale(0.9);
+
+  box-shadow: 4px 4px 51px red ;
+
+}
