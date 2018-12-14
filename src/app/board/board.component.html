@@ -1,13 +1,43 @@
+
+
+<h4> 
+    {{gameService.key}}
+   </h4>
+  <br>
+
+  
+<ng-container *ngIf="expression; else elseTemplate">
+
+
 <div class="grid">
   
-  <div *ngFor="let a of cells; index as i">
-    <app-cell class="cell"  [value] = "a[0]" (valueChange)="valueChange(a,0,$event)" [winner]="winner" [isPart]= "isPart(i,0)"  >  </app-cell>
-    <app-cell class="cell"  [value] = "a[1]" (valueChange)="valueChange(a,1,$event)" [winner]="winner" [isPart]= "isPart(i,1)"  ></app-cell>
-    <app-cell class="cell"  [value] = "a[2]" (valueChange)="valueChange(a,2,$event)" [winner]="winner" [isPart]= "isPart(i,2)"  ></app-cell>
+    <div *ngFor="let a of cells; index as i">
+      <app-cell class="cell"  [value] = "a[0]" (valueChange)="valueChange(a,0,$event)" [winner]="gameService.winner" [isPart]= "isPart(i,0)"  >  </app-cell>
+      <app-cell class="cell"  [value] = "a[1]" (valueChange)="valueChange(a,1,$event)" [winner]="gameService.winner" [isPart]= "isPart(i,1)"  ></app-cell>
+      <app-cell class="cell"  [value] = "a[2]" (valueChange)="valueChange(a,2,$event)" [winner]="gameService.winner" [isPart]= "isPart(i,2)"  ></app-cell>
+    </div>
+  
+  
+  
   </div>
+  
+</ng-container>
+<ng-template #elseTemplate>
 
 
+<div class="grid">
+  
+    <div *ngFor="let a of cells; index as i">
+      <app-cell class="cell"  [value] = "a[0]" (valueChange)="valueChange(a,0,$event)" [winner]="gameService.winner" [isPart]= "isPart(i,0)"  >  </app-cell>
+      <app-cell class="cell"  [value] = "a[1]" (valueChange)="valueChange(a,1,$event)" [winner]="gameService.winner" [isPart]= "isPart(i,1)"  ></app-cell>
+      <app-cell class="cell"  [value] = "a[2]" (valueChange)="valueChange(a,2,$event)" [winner]="gameService.winner" [isPart]= "isPart(i,2)"  ></app-cell>
+    </div>
+  
+  
+  
+  </div>
+  
+</ng-template>
 
-</div>
 
-
+<br>

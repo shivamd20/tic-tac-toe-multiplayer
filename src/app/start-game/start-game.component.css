@@ -24,6 +24,13 @@
  
     
 }
+
+.input:hover{
+
+
+  background: linear-gradient(to right, #3c1053, #2c091e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
 .input:focus{
 
 
@@ -52,7 +59,9 @@
 
     font-size: 30px;
 
-    background: linear-gradient(to right, #3c1053, #ad5389); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  background: linear-gradient(to right,brown, #ad5389); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 
 
 
@@ -64,5 +73,12 @@
     transform: scale(0.9);
 
   box-shadow: 4px 4px 51px red ;
+
+}
+
+.join{
+  
+  background: linear-gradient(to right, #3c1053, #ad5389); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 
 }

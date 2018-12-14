@@ -1,31 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { GameService } from '../game.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.css']
 })
-export class BoardComponent implements OnInit {
-
-  turn = 'X';
+export class BoardComponent implements OnInit, OnDestroy {
 
 cells :Array<Array<String>>;
 
-winner;
 
-  constructor(public gameService:GameService) { 
+
+polling ;
+
+
+ngOnDestroy(): void {
+
+  clearInterval(this.polling);
+
+}
+
+  constructor(public gameService:GameService , public router: Router) { 
+
+    if(!gameService.key) router.navigateByUrl('/');
 
     this.cells=gameService.getCells();
+
+ 
 
   }
 
 
 isPart(x,y){
 
-  if(!this.winner) return false
+  if(!this.gameService.winner) return false
 
-  var a = this.winner[1], b = this.winner[2], c = this.winner[3], d = this.winner[4], e = this.winner[5], f = this.winner[6];
+  var a = this.gameService.winner[1], b = this.gameService.winner[2], c = this.gameService.winner[3], d = this.gameService.winner[4], e = this.gameService.winner[5], f = this.gameService.winner[6];
 
 
 
@@ -37,23 +49,41 @@ isPart(x,y){
 
 
   ngOnInit() {
+
+
+  this.polling = this.gameService.startPolling();
+
+
+  }
+
+  myTurn(){
+
+
+    return this.gameService.turn === this.gameService.me;
   }
 
   valueChange(a,b,c){
 
-    if(this.winner) { return} 
+    if(this.gameService.me != this.gameService.turn){
+
+
+      return;
+
+    }
+
+    if(this.gameService.winner) { return} 
     if(c==' ')
     {
 
 
-      a[b] = this.turn;
+      a[b] = this.gameService.turn;
 
-    this.turn =  this.turn === 'X' ? 'O': 'X';
+    this.gameService.turn =  this.gameService.turn === 'X' ? 'O': 'X';
 
-    this.gameService.setTurn(this.turn);
+  
 
     if(this.gameService.checkForWinner() != undefined)
-   this.winner = ( this.gameService.checkForWinner() );
+   this.gameService.checkForWinner() ;
 
 
   

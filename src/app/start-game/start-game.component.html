@@ -1,6 +1,6 @@
 
 
-  <input class="input"  placeholder="ENTER GAME KEY"/>
+  <input class="input"   placeholder="ENTER GAME KEY" [(ngModel)]="key" /> 
 
   <h2>
 
@@ -8,5 +8,16 @@
 
   </h2>
 
+
+  <ng-container *ngIf="key; else elseTemplate">
+    
+
+  <button class="button" type="button" (click)="startGame()" > JOIN GAME </button> 
+
+  </ng-container>
+  <ng-template #elseTemplate>
+
+  <button class="button join" type="button" (click)="startGame()" > START NEW GAME </button> 
+    
+  </ng-template>
   
-  <button class="button" type="button"  > START NEW GAME </button> 

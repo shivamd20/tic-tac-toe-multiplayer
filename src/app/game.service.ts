@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RestService } from './rest.service';
+import { Router } from '@angular/router';
 
 
 
@@ -11,43 +12,92 @@ class State {
 
   key: number;
 
-  private data = {
+  onUpdate= () => {};
+
+  initialize(){
+
+
+    this.data = {
 
 
 
-    cells: [
+      cells: [
+  
+        [' ', ' ', ' '],
+  
+        [' ', ' ', ' '],
+  
+        [' ', ' ', ' '],
+  
+      ],
+  
+      turn: 'X',
+  
+      winner: null,
+  
+    }
+  
 
-      [' ', ' ', ' '],
 
-      [' ', ' ', ' '],
-
-      [' ', ' ', ' '],
-
-    ],
-
-    turn: 'X',
-
-    winner: null,
 
   }
 
+  private data;
 
   timeout;
 
 
-  newKey(){
+
+
+
+  joinGame(key, fn){
+
+
+  if(key )
+  this.rest.joinGame(key).subscribe((d:any)=>{
+
+if(d.data)
+{
+
+  this.key = key;
+
+    this.mergeState(d);
+  
+    this.onUpdate();
+  }
+  else{
+
+  fn(d.data);  
+
+  }
+
+
+  },e=>{
+
+
+
+  });
+
+
+
+  }
+
+
+  newKey(fn){
 
 
     this.rest.startGame().subscribe((d: any ) =>{
 
 
-      console.log(d)
       this.key = d.key;
+
+
+      fn(d)
 
 
     }, e=>{
 
-      console.log("newKey",e);
+      fn();
 
       
     })
@@ -76,15 +126,14 @@ class State {
    this.data.turn = data.turn;
 
 
-
-
-
   }
 
-  updateState(){
+  updateState(fn){
+
+    
 
 
-    console.log("updating");
+    this.onUpdate();
     
 
     this.rest.updateState({
@@ -99,6 +148,8 @@ class State {
 
       this.mergeState(d);
 
+      fn();
+
 
   }, e=>{
 
@@ -109,45 +160,40 @@ class State {
 
   }
 
+  startPolling(){
+
+
+
+
+
+
+return setInterval(()=>{
+
+  this.joinGame(this.key, ()=>{
+
+    
+  })
+
+
+
+
+},800);
+
+
+
+  }
+
 
   constructor(private rest: RestService) {
 
-this.newKey()
-
-
-
-setInterval(()=>{
-
-
-  if(this.key )
-  this.rest.joinGame(this.key).subscribe((d:any)=>{
-
-
-
-
-if(d.data)
-
-    this.mergeState(d);
-
-    console.log('merged',d)
-
-  },e=>{
-
-
- console.log("join error",e)
-
-  });
-
-
-},2000);
-
+    this.initialize();
 
   }
 
   stateUpdated() {
 
 
-    this.updateState();
+    this.updateState(()=>{});
 
     console.log(this.data);
 
@@ -220,20 +266,102 @@ if(d.data)
 export class GameService {
 
 
+  public me = 'X';
 
 
 
+  get key(){
 
-  setTurn(t) {
+    return this.state.key;
+
+  }
+
+
+  startPolling(){
+
+
+    return this.state.startPolling();
+
+  }
+
+
+startGame(key){
+
+  this.state.initialize();
+
+  if(key) { 
+    
+
+    //join game
+    
+    this.state.key = key; 
+  
+
+    this.state.joinGame(key, (d:any)=>{
+
+    console.log(key, d);
+
+    this.state.updateState(()=>{
+
+
+    this.router.navigateByUrl('/game');
+
+    this.me = 'O';
+
+
+    });
+
+
+    });
+
+
+    return;
+  
+  }else{
+
+  this.state.newKey((d)=>{ 
+
+
+    this.router.navigateByUrl('/game');
+
+
+   this.me = 'X';
+
+
+   });
+  
+  
+  
+  }
+
+
+}
+
+
+get turn(){
+
+  return this.state.turn;
+}
+
+  set turn(t) {
 
 
     this.state.turn = t;
 
+    console.log('turn',t);
+    
+
   }
 
-  constructor(private state: State) {
+  constructor(private state: State, private router: Router) {
 
 
+    this.state.onUpdate = ()=>{
+
+      if(!this.state.winner)
+      this.checkForWinner();
+
+    }
 
   }
 
@@ -306,6 +434,12 @@ export class GameService {
 
     return this.state.winner;
 
+
+  }
+
+  get winner(){
+
+    return this.state.winner;
 
   }
 
