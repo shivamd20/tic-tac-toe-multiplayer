@@ -11,7 +11,7 @@ export class StartGameComponent implements OnInit {
 
   key:string ;
 
-  constructor(private gameService:GameService) { }
+  constructor(public gameService:GameService) { }
 
 
   

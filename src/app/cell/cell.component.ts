@@ -23,7 +23,7 @@ export class CellComponent implements OnInit {
 
       @Output() valueChange  = new EventEmitter();
 
-      click(){
+      click(str){
 
         if(this.winner) return 
 
