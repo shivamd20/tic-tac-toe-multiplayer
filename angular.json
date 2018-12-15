@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/tic-tac-toe",
+            "outputPath": "/Users/shivamdwivedi/Documents/workspace-sts-3.9.5.RELEASE/multiplayer/src/main/resources/static/",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",

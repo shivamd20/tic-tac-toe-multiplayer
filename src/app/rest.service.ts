@@ -17,7 +17,7 @@ export class RestService {
         })
       };
 
-    readonly urlString: string = "http://127.0.0.1:7000/game/";
+    readonly urlString: string = "/game/";
 
     constructor(private http: HttpClient) {
     }
