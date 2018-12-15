@@ -64,6 +64,8 @@ isPart(x,y){
 
   valueChange(a,b,c){
 
+    if(!this.gameService.secondPlayerJoined) return;
+
     if(this.gameService.me != this.gameService.turn){
 
 

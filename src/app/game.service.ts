@@ -19,6 +19,7 @@ class State {
 
     this.data = {
 
+      secondPlayerJoined : false,
 
 
       cells: [
@@ -58,6 +59,9 @@ class State {
 
 if(d.data)
 {
+
+  console.log('ramu');
+  
 
   this.key = key;
 
@@ -124,6 +128,8 @@ if(d.data)
 
 
    this.data.turn = data.turn;
+
+   this.data.secondPlayerJoined = data.secondPlayerJoined;
 
 
   }
@@ -202,7 +208,18 @@ return setInterval(()=>{
   }
 
 
+  get secondPlayerJoined(){
 
+
+    return this.data.secondPlayerJoined;
+
+  }
+
+  set secondPlayerJoined(j){
+
+    this.data.secondPlayerJoined =j;
+
+  }
 
   get turn() {
 
@@ -284,6 +301,11 @@ export class GameService {
 
   }
 
+  get secondPlayerJoined(){
+
+    return this.state.secondPlayerJoined;
+  }
+
 
 startGame(key){
 
@@ -295,6 +317,8 @@ startGame(key){
     //join game
     
     this.state.key = key; 
+
+    this.state.secondPlayerJoined = true;
   
 
     this.state.joinGame(key, (d:any)=>{

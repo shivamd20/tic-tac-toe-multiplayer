@@ -1,15 +1,23 @@
 
 
 <h4> 
-    {{gameService.key}}
+   GameKey: {{gameService.key}} 
+    
+    
    </h4>
-  <br>
+
+
+
 
   
-<ng-container *ngIf="expression; else elseTemplate">
+<ng-container *ngIf="(gameService.me == gameService.turn) && gameService.secondPlayerJoined ; else elseTemplate">
 
 
-<div class="grid">
+  <h3>  Your turn 
+
+     ( {{gameService.me}}  )
+   </h3>
+<div class="grid glow">
   
     <div *ngFor="let a of cells; index as i">
       <app-cell class="cell"  [value] = "a[0]" (valueChange)="valueChange(a,0,$event)" [winner]="gameService.winner" [isPart]= "isPart(i,0)"  >  </app-cell>
@@ -23,6 +31,11 @@
   
 </ng-container>
 <ng-template #elseTemplate>
+
+    <h3> 
+
+        {{gameService.me}}  
+      </h3>
 
 
 <div class="grid">
@@ -40,4 +53,27 @@
 </ng-template>
 
 
-<br>
+
+
+ <ng-container *ngIf="gameService.winner; else gameOver">
+
+  <div>
+
+
+      Game over 
+
+      <ng-container *ngIf="gameService.winner[0]==gameService.me; else won">
+        you won
+      </ng-container>
+      <ng-template #won>
+        you lose
+      </ng-template>
+      
+
+  </div>
+   
+ </ng-container>
+ <ng-template #gameOver>
+   
+ </ng-template>
+ 

@@ -1,11 +1,15 @@
 .grid{
 
   display:inline-flex;
-  box-shadow: 0 0 100px pink;
-
-
   text-align: center;
   background: #000000; /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #000000, #434343); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #000000, #434343); 
+}
+
+.glow{
+
+  box-shadow: 0 0 100px blue;
+
+
 }
