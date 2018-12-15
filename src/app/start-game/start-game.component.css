@@ -1,7 +1,7 @@
 .input{
 
 
-    width: 300px;
+    width: 100px;
     height: 100px;
     text-align: center;
     font-size: 30px;
@@ -53,11 +53,10 @@
     width: 300px;
     height: 100px;
 
-    margin: auto;
     color: wheat;
     text-align: center;
 
-    font-size: 30px;
+    font-size: 29px;
 
 
   background: linear-gradient(to right,brown, #ad5389); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -70,15 +69,40 @@
 .button:hover{
 
 
-    transform: scale(0.9);
+    transform: scale(1.2);
+
+
+  background: linear-gradient(to right,blue, #ad5389); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 
   box-shadow: 4px 4px 51px red ;
 
 }
 
-.join{
-  
-  background: linear-gradient(to right, #3c1053, #ad5389); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 
+.small{
+
+
+  padding: 10px;
+  width: 100%;
+  max-width: 200px;
+  height: 40px;
+  font-size: 13px;
+  text-align: center;
+
+  margin: auto;
 }
+
+.outline{
+
+  display: inline;
+
+  background: linear-gradient(to right, black, blue);
+
+  box-shadow: 4px 4px 51px blue ;
+
+  border-radius: 2px;
+  border-color: aquamarine;
+}
+

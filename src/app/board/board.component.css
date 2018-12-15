@@ -9,7 +9,11 @@
 
 .glow{
 
-  box-shadow: 0 0 100px blue;
+  box-shadow: 0 0 200px pink;
+
+  border-width: 1px;
+  border-color: aquamarine;
+  border-style: dotted;
 
 
 }

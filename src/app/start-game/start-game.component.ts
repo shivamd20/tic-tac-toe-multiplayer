@@ -16,10 +16,10 @@ export class StartGameComponent implements OnInit {
 
   
 
-  startGame(){
+  startGame(key){
 
 
-    this.gameService.startGame(this.key);
+    this.gameService.startGame(key);
 
 
   }

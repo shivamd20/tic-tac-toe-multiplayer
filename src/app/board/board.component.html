@@ -1,11 +1,5 @@
 
 
-<h4> 
-   GameKey: {{gameService.key}} 
-    
-    
-   </h4>
-
 
 
 
@@ -13,10 +7,7 @@
 <ng-container *ngIf="(gameService.me == gameService.turn) && gameService.secondPlayerJoined ; else elseTemplate">
 
 
-  <h3>  Your turn 
-
-     ( {{gameService.me}}  )
-   </h3>
+ 
 <div class="grid glow">
   
     <div *ngFor="let a of cells; index as i">
@@ -28,15 +19,16 @@
   
   
   </div>
+
+  <h3>  Your turn 
+
+      ( {{gameService.me}}  )
+    </h3>
   
 </ng-container>
 <ng-template #elseTemplate>
 
-    <h3> 
-
-        {{gameService.me}}  
-      </h3>
-
+  
 
 <div class="grid">
   
@@ -49,6 +41,11 @@
   
   
   </div>
+  <h3> 
+
+      {{gameService.me}}  
+    </h3>
+
   
 </ng-template>
 
@@ -76,4 +73,11 @@
  <ng-template #gameOver>
    
  </ng-template>
+ 
+ <h4> 
+    GameKey: {{gameService.key}} 
+     
+     
+    </h4>
+ 
  

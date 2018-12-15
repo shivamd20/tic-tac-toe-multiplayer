@@ -23,6 +23,8 @@ export class RestService {
     }
 
 
+    
+
 
 
     updateState(data) {
@@ -40,11 +42,17 @@ export class RestService {
      return   this.http.post(this.urlString, {
     
     });
-       
+    
+    }
+
+    getGames() {
 
 
+        const params: HttpParams = new HttpParams();
 
+        
 
+        return this.http.request("GET", this.urlString , { responseType: "json" });
 
     }
 
@@ -56,7 +64,7 @@ export class RestService {
 
         params.append("key", key);
 
-        return this.http.request("GET", this.urlString + "?key=" + key, { responseType: "json", params });
+        return this.http.request("GET", this.urlString + "" + key, { responseType: "json", params });
 
     }
 

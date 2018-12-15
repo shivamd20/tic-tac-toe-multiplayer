@@ -12,7 +12,31 @@ class State {
 
   key: number;
 
+  games:Array<any>=[];
+
   onUpdate= () => {};
+
+  fetchGames(){
+
+    this.rest.getGames().subscribe((d:any)=>{
+
+      this.games = d;
+
+
+    }, e =>{
+
+
+      console.log(e);
+      
+
+
+
+    });
+
+    return 
+
+
+  }
 
   initialize(){
 
@@ -362,6 +386,12 @@ startGame(key){
 }
 
 
+get games(){
+
+
+  return this.state.games;
+}
+
 get turn(){
 
   return this.state.turn;
@@ -378,6 +408,10 @@ get turn(){
   }
 
   constructor(private state: State, private router: Router) {
+
+
+
+  this.state.fetchGames();
 
 
     this.state.onUpdate = ()=>{
