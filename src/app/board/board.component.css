@@ -15,3 +15,30 @@
   border-color: aquamarine;
   border-style: dotted;
 }
+.status{
+
+  background-color: mediumaquamarine;
+  border-left: 1px;
+  width: 300px;
+  margin: auto;
+  opacity: 0.5;
+
+
+}
+
+.draw{
+  background-color: blue
+
+}
+
+.win{
+  background-color: green
+
+}
+
+
+.lose{
+
+  background-color: red
+
+}

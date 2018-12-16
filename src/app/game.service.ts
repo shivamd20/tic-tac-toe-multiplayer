@@ -15,6 +15,28 @@ import { StateService } from './state.service';
 export class GameService {
 
 
+  checkForDraw(){
+
+
+    for(let i=0;i<3;i++)
+    for(let j=0;j<3;j++){
+
+     if( this.getCells()[i][j] == ' '){
+
+
+      return false;
+
+     }
+      
+
+    }
+
+    return true;
+
+
+  }
+  
+
   public me = 'X';
 
   constructor(private state: StateService, private router: Router) {
@@ -185,6 +207,44 @@ get turn(){
 
   }
 
+  
+
+reset(draw){
+
+
+
+  if(draw){
+
+
+  var turn = this.state.turn;
+  
+      this.state.initialize();
+  
+      this.state.secondPlayerJoined = true;
+  
+      this.state.turn = turn;
+  
+      this.state.stateUpdated();
+    
+    }
+else
+  setTimeout(()=>{
+
+
+var turn = this.state.turn;
+
+    this.state.initialize();
+
+    this.state.secondPlayerJoined = true;
+
+    this.state.turn = turn;
+
+    this.state.stateUpdated();
+  },
+  
+  
+  4000);
+}
 
   checkForWinner() {
 
@@ -196,6 +256,35 @@ get turn(){
 
     var y = this.check('O');
     if (y instanceof Array) this.state.winner = y;
+
+    var draw :boolean;
+
+    if(this.state.winner == null)  { 
+      
+      draw =this.checkForDraw();
+
+      if(draw)
+      {
+        
+        console.log('draw');
+      
+        this.reset(true);
+      
+
+      }
+
+      
+    
+    }else {
+
+
+      console.log('won');
+      this.reset(false);
+
+    } 
+
+
+
 
 
     return this.state.winner;

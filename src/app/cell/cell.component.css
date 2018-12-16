@@ -82,7 +82,7 @@ background: linear-gradient(to right, #3c1053, #ad5389); /* W3C, IE 10+/ Edge, F
 
 .slideanim{
 
-  animation: slide 5s ease alternate infinite;
+  animation: slide 2s ease alternate infinite;
   animation-iteration-count: infinite;
 
 }

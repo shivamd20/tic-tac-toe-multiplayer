@@ -2,6 +2,9 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 
 
+//   "outputPath": "/Users/shivamdwivedi/Documents/workspace-sts-3.9.5.RELEASE/multiplayer/src/main/resources/static/",
+        
+
 @Injectable({
     providedIn: 'root'
 })
@@ -17,7 +20,7 @@ export class RestService {
         })
       };
 
-    readonly urlString: string = "/game/";
+    readonly urlString: string = "https://multiii.herokuapp.com/game/";
 
     constructor(private http: HttpClient) {
     }

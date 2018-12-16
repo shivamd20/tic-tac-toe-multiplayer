@@ -10,7 +10,7 @@
  
 <div class="grid glow">
   
-    <div *ngFor="let a of cells; index as i">
+    <div *ngFor="let a of gameService.getCells(); index as i">
       <app-cell class="cell"  [value] = "a[0]" (valueChange)="valueChange(a,0,$event)" [winner]="gameService.winner" [isPart]= "isPart(i,0)"  >  </app-cell>
       <app-cell class="cell"  [value] = "a[1]" (valueChange)="valueChange(a,1,$event)" [winner]="gameService.winner" [isPart]= "isPart(i,1)"  ></app-cell>
       <app-cell class="cell"  [value] = "a[2]" (valueChange)="valueChange(a,2,$event)" [winner]="gameService.winner" [isPart]= "isPart(i,2)"  ></app-cell>
@@ -20,7 +20,7 @@
   
   </div>
 
-  <h3>  Your turn 
+  <h3 class="status">  Your turn 
 
       ( {{gameService.me}}  )
     </h3>
@@ -32,7 +32,7 @@
 
 <div class="grid">
   
-    <div *ngFor="let a of cells; index as i">
+    <div *ngFor="let a of    gameService.getCells(); index as i">
       <app-cell class="cell"  [value] = "a[0]" (valueChange)="valueChange(a,0,$event)" [winner]="gameService.winner" [isPart]= "isPart(i,0)"  >  </app-cell>
       <app-cell class="cell"  [value] = "a[1]" (valueChange)="valueChange(a,1,$event)" [winner]="gameService.winner" [isPart]= "isPart(i,1)"  ></app-cell>
       <app-cell class="cell"  [value] = "a[2]" (valueChange)="valueChange(a,2,$event)" [winner]="gameService.winner" [isPart]= "isPart(i,2)"  ></app-cell>
@@ -41,7 +41,7 @@
   
   
   </div>
-  <h3> 
+  <h3 class="status"> 
 
       {{gameService.me}}  
     </h3>
@@ -54,20 +54,33 @@
 
  <ng-container *ngIf="gameService.winner; else gameOver">
 
-  <div>
+
 
 
       Game over 
+      <br>
 
       <ng-container *ngIf="gameService.winner[0]==gameService.me; else won">
-        you won
+
+
+          <div class="status win"> 
+ 
+
+
+            you won
+</div>
+      
       </ng-container>
       <ng-template #won>
-        you lose
+          <div class="status lose"> 
+ 
+
+
+              you lose
+  </div>
       </ng-template>
       
 
-  </div>
    
  </ng-container>
  <ng-template #gameOver>
