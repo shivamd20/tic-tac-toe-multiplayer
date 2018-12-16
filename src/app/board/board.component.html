@@ -87,7 +87,9 @@
    
  </ng-template>
  
- <h4> 
+
+ 
+ <h4 *ngIf="!gameService.secondPlayerJoined"> 
     GameKey: {{gameService.key}} 
      
      
