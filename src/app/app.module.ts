@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { TestGraphComponent } from './test-graph/test-graph.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'game',
     component: BoardComponent
+  },
+  {
+    path: 'graphql',
+    component : TestGraphComponent
   }
 ];
 
@@ -31,6 +36,7 @@ const routes: Routes = [
     BoardComponent,
     CellComponent,
     StartGameComponent,
+    TestGraphComponent,
   ],
   imports: [
     BrowserModule,
