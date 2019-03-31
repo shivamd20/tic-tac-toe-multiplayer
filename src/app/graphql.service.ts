@@ -81,7 +81,7 @@ export class GraphqlService implements RestEndPoints {
 
   joinGame(key): Observable<any> {
     return this.apollo.subscribe({
-      query: gql`subscription($key: uuid){
+      query: gql`query($key: uuid){
         ttt_state(where:{key:{
           _eq: $key
         }}){
@@ -90,7 +90,7 @@ export class GraphqlService implements RestEndPoints {
         }
       }`,
       variables: {
-        key: this.key
+        key: key
       }
     },
     );

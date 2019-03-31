@@ -1,74 +1,44 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
-
-
-//   "outputPath": "/Users/shivamdwivedi/Documents/workspace-sts-3.9.5.RELEASE/multiplayer/src/main/resources/static/",
-        
-
+import { GraphqlService } from "./graphql.service";
+import { map } from 'rxjs/operators';
 @Injectable({
     providedIn: 'root'
 })
-
-
-
 export class RestService {
 
+    constructor(private graphql: GraphqlService) { }
+    updateState({key, data}) {
 
-    httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type':  'application/json',
-        })
-      };
+        console.log('updateState called');
+     return   this.graphql.updateState(data,key).pipe(map(x=>{
+        console.log('updateState called',x);
+        return x.data.update_ttt_state.returning[0];
 
-    readonly urlString: string = "https://multiii.herokuapp.com/game/";
-
-    constructor(private http: HttpClient) {
-    }
-
-
-    
-
-
-
-    updateState(data) {
-
-
-
-     return   this.http.put(this.urlString, data,this.httpOptions);
-
-
+     }))
     }
 
     startGame() {
-
-
-     return   this.http.post(this.urlString, {
-    
-    });
-    
+       return this.graphql.startGame().pipe(map(x=>{
+        console.log('startGame called',x);
+     return x.data.insert_ttt_state.returning[0];
+       }));
     }
 
     getGames() {
 
-
-        const params: HttpParams = new HttpParams();
-
         
-
-        return this.http.request("GET", this.urlString , { responseType: "json" });
-
+        return this.graphql.getGames().pipe(map(x=>{
+            console.log('get Games called',x);
+         return  x.data.ttt_state;
+        }));
     }
 
 
     joinGame(key) {
-
-
-        const params: HttpParams = new HttpParams();
-
-        params.append("key", key);
-
-        return this.http.request("GET", this.urlString + "" + key, { responseType: "json", params });
-
+        return this.graphql.joinGame(key).pipe(map(x=>{
+            console.log(key,"joining",JSON.stringify(x));
+        return  x.data.ttt_state[0];
+        }));
     }
 
 }

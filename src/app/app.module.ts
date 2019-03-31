@@ -95,7 +95,6 @@ const routes: Routes = [
         // split based on operation type
         ({ query }) => {
           const { kind, operation } = getMainDefinition(query);
-          console.log(kind, operation, query)
           return kind === 'OperationDefinition' && operation === 'subscription';
         },
        wsLink,

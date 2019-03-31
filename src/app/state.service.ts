@@ -75,9 +75,9 @@ export class StateService {
 
   joinGame(key, fn){
 
-
   if(key )
   this.rest.joinGame(key).subscribe((d:any)=>{
+    console.warn("has Data", d);
 
 if(d.data)
 {
@@ -133,6 +133,7 @@ if(d.data)
 
   mergeState(d){
 
+console.warn(d);
 
 
     var data = JSON.parse(d.data);
@@ -205,7 +206,7 @@ return setInterval(()=>{
 
 
 
-},800);
+},180);
 
 
 
