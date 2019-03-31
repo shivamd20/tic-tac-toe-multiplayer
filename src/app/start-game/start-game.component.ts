@@ -12,22 +12,10 @@ export class StartGameComponent implements OnInit {
   key:string ;
 
   constructor(public gameService:GameService) { }
-
-
-  
-
   startGame(key){
-
-
     this.gameService.startGame(key);
-
-
   }
 
   ngOnInit() {
   }
-
-
-
-
 }
